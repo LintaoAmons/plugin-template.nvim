@@ -4,9 +4,9 @@ if vim.fn.has("nvim-0.7.0") == 0 then
 end
 
 -- make sure this file is loaded only once
-if vim.g.loaded_cd_project == 1 then
+if vim.g.loaded_project_name == 1 then
 	return
 end
-vim.g.loaded_cd_project = 1
+vim.g.loaded_project_name = 1
 
 require("plugin-name").setup()

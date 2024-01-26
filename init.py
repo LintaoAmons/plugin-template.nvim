@@ -35,10 +35,13 @@ def replace_in_files(root_path, name):
 
         for filename in filenames:
             filepath = os.path.join(dirpath, filename)
+            if filepath == os.path.realpath(__file__):
+                continue  # Skip the script file
             # Read the file content and replace
             with open(filepath, "r", encoding="utf-8", errors="ignore") as file:
                 content = file.read()
-            new_content = content.replace("plugin-name", name)
+                new_content = content.replace("plugin-name", name)
+                new_content = content.replace("plugin_name", name.replace("-", "_"))
             # Write the modified content back
             with open(filepath, "w", encoding="utf-8", errors="ignore") as file:
                 file.write(new_content)
@@ -46,7 +49,6 @@ def replace_in_files(root_path, name):
 
 # Get the directory of the script and use it as the root path
 if __name__ == "__main__":
-    pass
     root_path = os.path.dirname(os.path.realpath(__file__))
 
     rename_dirs_and_files(root_path, sys.argv[1])
