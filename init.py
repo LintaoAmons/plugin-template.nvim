@@ -40,8 +40,9 @@ def replace_in_files(root_path, name):
             # Read the file content and replace
             with open(filepath, "r", encoding="utf-8", errors="ignore") as file:
                 content = file.read()
-                new_content = content.replace("plugin-name", name)
-                new_content = content.replace("plugin_name", name.replace("-", "_"))
+                new_content = content.replace("plugin-name", name).replace(
+                    "plugin_name", name.replace("-", "_")
+                )
             # Write the modified content back
             with open(filepath, "w", encoding="utf-8", errors="ignore") as file:
                 file.write(new_content)
